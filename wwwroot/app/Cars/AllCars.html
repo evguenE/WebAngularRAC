@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<br>
+<div class="container">
+    <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+            <ul class='nav navbar-nav'>
+                <li><a [routerLink]="['/AdminDashboard']">Главная</a></li>
+                <li><a [routerLink]="['/Car']">Добавить новую заявку</a></li>
+                <!--<li><a [routerLink]="['/UploadCarPhoto']">Upload Car Photo</a></li>-->
+                <li><a [routerLink]="['/AdminLogout']">Выйти</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="panel panel-default">
+        <div class="panel-heading">Список заявок</div>
+        <div class='panel-body' style="overflow-y: scroll; height: 800px" >
+
+            <div class='table-responsive'>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>№ заявки</th>
+                            <th>Дата</th>
+                            <th>№ торгов</th>
+                            <th>Ответственный</th>
+                            <th>Статус</th>
+                            <!--<th>Fueltype</th>-->
+                            <!--<th>Photo</th>-->
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let CarDetails of CarData'>
+                            <!--<td>{{CarDetails.Dat}}</td>
+                            <td>{{CarDetails.Trade}}</td>
+                            <td>{{CarDetails.Res}}</td>
+                            <td>{{CarDetails.Status}}</td>-->
+
+                            <td>{{CarDetails.Model_Name}}</td>
+                            <td>{{CarDetails.Brand}}</td>
+                            <td>{{CarDetails.Color}}</td>
+                            <td>{{CarDetails.No_of_Pas}}</td>
+                            <td>{{CarDetails.Price}}</td>
+                            <!--<td>{{CarDetails.Fueltype}}</td>
+                            <td><img alt="" width="150px" height="150px" [src]="CarDetails.Image" /></td>-->
+                            <td>
+                                <a class="btn btn-success" [routerLink]="['/EditCar', CarDetails.C_Id]" width="20px" height="20px"><span><i class="fa fa-pencil" title="редактирование и просмотр"></i></span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

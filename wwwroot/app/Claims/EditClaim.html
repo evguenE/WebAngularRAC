@@ -1,0 +1,570 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <br>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class='container-fluid'>
+                <ul class='nav navbar-nav'>
+                    <li><a [routerLink]="['/AdminDashboard']">Главная</a></li>
+                    <li><a [routerLink]="['/Car']">Добавить новую заявку</a></li>                  
+                    <li><a [routerLink]="['/AllCar']">Показать все заявки</a></li>
+                    <li><a [routerLink]="['/AdminLogout']">Выход</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Заявка {{claimmodel.Pp}} </div>
+            <div class='panel-body'>
+
+                <form #f="ngForm" novalidate (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-4 pull-right">
+                            <label for="name">Ответственный</label>
+                            <select required name="Manager"
+                                    #refManager="ngModel"
+                                    class="form-control"
+                                    id="Manager"
+                                    [(ngModel)]="claimmodel.Manager">
+                                <option>{{claimmodel.Manager}}</option>
+                                <option value="Иванов">Иванов</option>
+                                <option value="Сидоров">Сидоров</option>
+                            </select>
+
+
+
+
+
+                            <!--<div *ngIf="!refCar.valid  && (refCar.dirty || refCar.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refCar.errors.required">
+                    Required
+                </div>
+            </div>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">№ торгов</label>
+                            <input type="text" class="form-control" name="Pp"
+                                   [(ngModel)]="claimmodel.Pp"
+                                   #refPp="ngModel"
+                                   id="Pp" required>
+                            <div *ngIf="!refPp.valid  && (refPp.dirty || refPp.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refPp.errors.required">
+                                    Model Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input id="Pp" name="Pp" [(ngModel)]="claimmodel.Pp" type="hidden" />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Малое</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Mp"
+                                   [(ngModel)]="claimmodel.Mp"
+                                   #refMp="ngModel"
+                                   id="Mp" required>
+
+                            <div *ngIf="!refMp.valid  && (refMp.dirty || refMp.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refMp.errors.required">
+                                    Brand Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Площадка</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Place"
+                                   [(ngModel)]="claimmodel.Place"
+                                   #refPlace="ngModel"
+                                   id="Place" required>
+
+                            <div *ngIf="!refPlace.valid  && (refPlace.dirty || refPlace.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refPlace.errors.required">
+                                    Площадка требуется
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Гарза</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Garza"
+                                   [(ngModel)]="claimmodel.Garza"
+                                   #refGarza="ngModel"                            
+                                   maxlength="1"
+                                   id="Garza" required>
+
+                            <div *ngIf="!refGarza.valid  && (refGarza.dirty || refGarza.touched)"
+                                 class="alert alert-danger">
+                                Гарза требкется / Only Numbers are allowed
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <label for="name">Дата окончания подачи</label>
+                            <input [(ngModel)]="claimmodel.DatePost"
+                                   #refDatePost="ngModel"
+                                   ng2-datetime-picker
+                                   class="form-control"
+                                   name="DatePost" required
+                                   date-only="true"
+                                   date-format="DD/MM/YYYY"
+                                   year="2016"
+                                   month="12"
+                                   day="31"
+                                   [close-on-select]="true" />
+
+                            <div *ngIf="!refDatePost.valid  && (refDatePost.dirty || refDatePost.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refDatePost.errors.required">
+                                    Дата необходима
+                                </div>
+                            </div>
+
+                            <label for="name">Результат</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Result"
+                                   [(ngModel)]="claimmodel.Result"
+                                   #refResult="ngModel"
+                                   id="Result" required>
+                            <div *ngIf="!refResult.valid  && (refResult.dirty || refResult.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refResult.errors.required">
+                                    Результат необходим
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <label for="name">Дата и время проведения аукциона</label>
+                            <input [(ngModel)]="claimmodel.DateAuction"
+                                   #refDateAuction="ngModel"
+                                   ng2-datetime-picker class="form-control"
+                                   name="DateAuction" required
+                                   date-format="DD/MM/YYYY   HH:MM"
+                                   year="2014"
+                                   month="12"
+                                   day="31"
+                                   [close-on-select]="true" />
+
+                            <div *ngIf="!refDateAuction.valid  && (refDateAuction.dirty || refDateAuction.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refDateAuction.errors.required">
+                                    Дата необходима
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-md-4">
+
+            <label for="name">Время проведения аукциона</label>
+            <input [(ngModel)]="claimmodel.DateAuction"
+                   #refDateAuction="ngModel"
+                   ng2-datetime-picker
+                   class="form-control"
+                   name="DateAuction" required
+                   date-format="YYYY-MM-DD  HH:MM"
+                   time-only="true"
+                   hour="23"
+                   minute='59'
+
+                   [close-on-select]="false" />
+
+            <div *ngIf="!refDateAuction.valid  && (refDateAuction.dirty || refDateAuction.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refDateAuction.errors.required">
+                    Время проведения аукциона необходимо
+                </div>
+            </div>
+        </div>-->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Игрок</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Player"
+                                   [(ngModel)]="claimmodel.Player"
+                                   #refPlayer="ngModel"
+                                   id="Player" required>
+                            <div *ngIf="!refPlayer.valid  && (refPlayer.dirty || refPlayer.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refPlayer.errors.required">
+                                    Игрок требуется
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Регион</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Region"
+                                   [(ngModel)]="claimmodel.Region"
+                                   #refRegion="ngModel"
+                                   id="Region" required>
+                            <div *ngIf="!refRegion.valid  && (refRegion.dirty || refRegion.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refRegion.errors.required">
+                                    Регион требуется
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Заказчик</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Client"
+                                   [(ngModel)]="claimmodel.Client"
+                                   #refClient="ngModel"
+                                   id="Client" required>
+                            <div *ngIf="!refClient.valid  && (refClient.dirty || refClient.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refClient.errors.required">
+                                    Заказчик требуется
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Менеджер</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Manager"
+                                   [(ngModel)]="claimmodel.Manager"
+                                   #refManager="ngModel"
+                                   id="Manager" required>
+                            <div *ngIf="!refManager.valid  && (refManager.dirty || refManager.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refManager.errors.required">
+                                    Менеджер требуется
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Начальная цена</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="FirstPrice"
+                                   [(ngModel)]="claimmodel.FirstPrice"
+                                   #refFirstPrice="ngModel"
+                                   pattern="^[0-9]*$"
+                                   id="FirstPrice" required>
+
+                            <div *ngIf="!refFirstPrice.valid  && (refFirstPrice.dirty || refFirstPrice.touched)"
+                                 class="alert alert-danger">
+                                Price is required / Only Numbers are allowed
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Сумма обеспечения заявки</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Sum"
+                                   [(ngModel)]="claimmodel.Sum"
+                                   #refSum="ngModel"
+                                   pattern="^[0-9]*$"
+                                   id="Sum" required>
+                            <div *ngIf="!refSum.valid  && (refSum.dirty || refSum.touched)"
+                                 class="alert alert-danger">
+
+                                Sum is required / Only Numbers are allowed
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <label for="name">Возврат обеспечения заявки</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Return"
+                                   [(ngModel)]="claimmodel.Return"
+                                   #refReturn="ngModel"
+                                   id="Return" required>
+                            <div *ngIf="!refReturn.valid  && (refReturn.dirty || refReturn.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refReturn.errors.required">
+                                    Return is required
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">Сумма выигрыша</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="SumPrize"
+                                   [(ngModel)]="claimmodel.SumPrize"
+                                   #refSumPrize="ngModel"
+                                   id="SumPrize" required>
+                            <div *ngIf="!refSumPrize.valid  && (refSumPrize.dirty || refSumPrize.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refSumPrize.errors.required">
+                                    Сумма выигрыша требуется
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="name">% снижения цены</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="Percent"
+                                   [(ngModel)]="claimmodel.Percent"
+                                   #refPercent="ngModel"
+                                   id="Percent" required>
+                            <div *ngIf="!refPercent.valid  && (refPercent.dirty || refPercent.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refPercent.errors.required">
+                                    Сумма выигрыша требуется
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--<div class="row">
+        <div class="col-md-4">
+            <label for="name">Сумма обеспечения исполнения контракта</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <label for="name">Форма обеспечения контракта</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+    </div>-->
+                    <!--<div class="row">
+        <div class="col-md-4">
+            <label for="name">Срок окончания действия обеспечения исполнения контракта</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <label for="name">Возврат обеспечения контракта</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="name">Обепечение исполнения контракта ГАРЗА (размер обеспечения умножается на 1.5)</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="name">№ банковской гарантии</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <label for="name">Оригинал банковской гарантии</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+    </div>-->
+                    <!--<div class="row">
+        <div class="col-md-4">
+            <label for="name">Дата выдачи банковской гарантии</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <label for="name">Дата окончания банковской гарантии</label>
+            <input type="text"
+                   class="form-control"
+                   name="Percent"
+                   [(ngModel)]="claimmodel.Percent"
+                   #refFueltype="ngModel"
+                   id="Percent" required>
+            <div *ngIf="!refFueltype.valid  && (refFueltype.dirty || refFueltype.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!refFueltype.errors.required">
+                    Сумма выигрыша требуется
+                </div>
+            </div>
+
+        </div>
+    </div>-->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="name">Статус исполнения контракта</label>
+                            <select required name="Status"
+                                    #refStatus="ngModel"
+                                    class="form-control"
+                                    id="Status"
+                                    [(ngModel)]="claimmodel.Status">
+                                <option>{{claimmodel.Status}}</option>
+                                <option value="Отклонить">Отклонить</option>
+                                <option value="Отправить">Отправить</option>
+                            </select>
+                            <div *ngIf="!refStatus.valid  && (refStatus.dirty || refStatus.touched)"
+                                 class="alert alert-danger">
+                                <div [hidden]="!refStatus.errors.required">
+                                    Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div style="margin-top:10px;" class="col-md-4">
+                            <button type="button" [routerLink]="['/AllClaim']" class="btn btn-success">Назад  </button>
+                            <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Сохранить</button>
+
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

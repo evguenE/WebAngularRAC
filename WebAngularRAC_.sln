@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAngularRAC", "WebAngularRAC.csproj", "{E564977A-D09C-4644-AA54-11E8FB287D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmSib", "..\SibFarm\Repos\FarmSib\FarmSib.csproj", "{B28AA88E-B7F8-44F6-8C80-A40A93631FAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E564977A-D09C-4644-AA54-11E8FB287D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E564977A-D09C-4644-AA54-11E8FB287D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E564977A-D09C-4644-AA54-11E8FB287D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E564977A-D09C-4644-AA54-11E8FB287D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28AA88E-B7F8-44F6-8C80-A40A93631FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28AA88E-B7F8-44F6-8C80-A40A93631FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28AA88E-B7F8-44F6-8C80-A40A93631FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28AA88E-B7F8-44F6-8C80-A40A93631FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F7776D4-56E7-4AC1-8BE7-A50EFEAE688B}
+	EndGlobalSection
+EndGlobal
